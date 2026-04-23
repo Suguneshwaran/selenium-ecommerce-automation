@@ -38,11 +38,12 @@ public class LandingPage extends AbstractComponent{
 	
 // Performing action using actions methods - creating a method where actions are performed
 	
-	public void loginApplication(String email, String pass) // Action Method 
+	public ProductCataloguePage loginApplication(String email, String pass) // Action Method 
 	{
 		emailElement.sendKeys(email);
 		passwordElement.sendKeys(pass);
 		loginBtn.click();
+		return new ProductCataloguePage(driver);
 				
 	}
 	

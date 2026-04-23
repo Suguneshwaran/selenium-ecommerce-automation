@@ -50,7 +50,7 @@ public class CheckOutPage extends AbstractComponent{
 	
 	public ConfirmationPage clickSubmitBtn() // this methods return type is an obj which is newly created for ConfirmationPage
 	{
-		submitbtn.click();
+		elementClick(submitbtn);
 		return new ConfirmationPage(driver); // returning obj as return type
 	}
 	
