@@ -36,6 +36,9 @@ public class LandingPage extends AbstractComponent{
 	@FindBy(id="login")
 	WebElement loginBtn;
 	
+	@FindBy(css = "[class*='flyInOut']")
+	WebElement errorMsg;
+	
 // Performing action using actions methods - creating a method where actions are performed
 	
 	public ProductCataloguePage loginApplication(String email, String pass) // Action Method 
@@ -52,5 +55,11 @@ public class LandingPage extends AbstractComponent{
     	driver.get("https://rahulshettyacademy.com/client");
     }
 	
+    public String getErrorMsg()
+    {
+    	webElementToAppear(errorMsg);
+    	String errorMessage = errorMsg.getText();
+    	return errorMessage;
+    }
 	
 }

@@ -6,6 +6,8 @@
       <class name="SuguneshMavenProjects.Tests.StandAloneTestToPOMMainclass">
         <methods>
           <include name="submitOrder"/>
+          <include name="launchAppliaction"/>
+          <include name="tearDown"/>
         </methods>
       </class> <!-- SuguneshMavenProjects.Tests.StandAloneTestToPOMMainclass -->
     </classes>
