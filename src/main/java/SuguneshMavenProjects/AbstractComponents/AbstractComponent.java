@@ -12,6 +12,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import SuguneshMavenProjects.pageObjectModule.OrderPage;
+
 public class AbstractComponent {
 	
     WebDriver driver;
@@ -26,11 +28,20 @@ public class AbstractComponent {
 	@FindBy(css="button[routerlink*='cart']")
 	WebElement mainCartBtn;
 	
+	@FindBy(css="button[routerlink*='myorders']")
+	WebElement orderHeaderBtn;
 	
 // We added main "Cart" button click code here because Cart button is common and present in header and can be seen in all pages	
-	public void mainCartClick()
+	public void goToCartPage()
 	{
 		elementClick(mainCartBtn);
+	}
+	
+	public OrderPage goToOrdersPage() // This method's return type is an object of order page
+	{
+		elementClick(orderHeaderBtn);
+		OrderPage orderPageObj = new OrderPage(driver);
+		return orderPageObj;
 	}
 	
 	public void elementToAppear(By findBy)

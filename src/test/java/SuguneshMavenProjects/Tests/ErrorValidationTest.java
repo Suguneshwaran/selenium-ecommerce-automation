@@ -12,7 +12,7 @@ import SuguneshMavenProjects.pageObjectModule.ProductCataloguePage;
 
 public class ErrorValidationTest extends BaseTest{
 
-	@Test
+	@Test (groups = {"ErrorHandling"})
 	public void loginOrderErrorValidation() throws IOException{
 			
 		// Checking what happens when we give wrong email and pass 
@@ -28,7 +28,7 @@ public class ErrorValidationTest extends BaseTest{
 		ProductCataloguePage productPage= landPage.loginApplication("suguneshthanos@gmail.com","Sample@5714");	
 		List<WebElement> products = productPage.getProductList();
 		productPage.addToCart(productName);
-		productPage.mainCartClick();
+		productPage.goToCartPage();
 		
 		CartPage cartPageObj = new CartPage(driver);
 		Boolean match = cartPageObj.verifyProductDisplayed("ZARA COAT 33");

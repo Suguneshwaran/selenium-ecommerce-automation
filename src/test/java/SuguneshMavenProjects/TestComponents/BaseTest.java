@@ -64,7 +64,7 @@ public class BaseTest {
 		
 	}
 	
-	@BeforeMethod // as this method is declared as "Before Method" - before every method of "StandAloneTestToPOMMainclass" class this method will execute
+	@BeforeMethod(alwaysRun = true) // as this method is declared as "Before Method" - before every method of "StandAloneTestToPOMMainclass" class this method will execute
 	public LandingPage launchAppliaction() throws IOException
 	{
 		driver = initializeDriver();
@@ -74,7 +74,7 @@ public class BaseTest {
 		
 	}
 	
-	@AfterMethod // as this method is declared as "After Method" - after every method of "StandAloneTestToPOMMainclass" class this method will execute
+	@AfterMethod (alwaysRun = true)// as this method is declared as "After Method" - after every method of "StandAloneTestToPOMMainclass" class this method will execute
 	public void tearDown()
 	{
 		driver.close();
