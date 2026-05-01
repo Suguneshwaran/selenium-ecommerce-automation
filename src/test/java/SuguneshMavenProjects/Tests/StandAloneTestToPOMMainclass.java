@@ -1,8 +1,13 @@
 package SuguneshMavenProjects.Tests;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -76,26 +81,26 @@ public class StandAloneTestToPOMMainclass extends BaseTest{
 		OrderPage orderPgObj = productPage.goToOrdersPage(); // encapsulating object creation statement
 		Assert.assertTrue(orderPgObj.verifyProductDisplayed(productNameMain)); // verifyProductDisplayed method will return boolean, so catching it in assert statement
 	}
+	
+	public String getScreenShot(String testCaseName) throws IOException
+	{
+		TakesScreenshot ts = (TakesScreenshot) driver;
+		File sourceFile = ts.getScreenshotAs(OutputType.FILE);
+		File destFile = new File(System.getProperty("user.dir") + "//reports" + testCaseName + ".png");
+		FileUtils.copyFile(sourceFile, destFile);
+		
+		return System.getProperty("user.dir") + "//reports" + testCaseName + ".png" ; // returning the path of file where it is stored , so that user can print and check in the path
+	}
 
 	@DataProvider
-	public Object[][] getData() {
+	public Object[][] getData() throws IOException {
 		
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("email","suguneshthanospmmm@gmail.com");
-		map.put("password","Eagle@5714");
-		map.put("product","ZARA COAT 3");
+		// Here below method is advanced where we get data from external file, for a beginner , we can use below 2 commented methods
 		
-		HashMap<String, String> map1 = new HashMap<String, String>();
-		map1.put("email","suguneshthanos@gmail.com");
-		map1.put("password","Sample@5714");
-		map1.put("product","ADIDAS ORIGINAL");
-		
-		
-		return new Object[][] {{map},{map1}};
-		// here we are returning objects which has data set inside it
-		//syntax -> return new Object[][] { {1st data set},{second data set} } // u need to add {} curly braces inside curly braces, to indicate how many data set u are going to pass and perform same test 
-	}
+		List<HashMap<String, String>> data =  getJsonDataToMap(System.getProperty("user.dir")+"\\src\\test\\java\\SuguneshMavenProjects\\data\\PurchaseOrder.json");
+		return new Object[][] {{data.get(0)},{data.get(1)}};
 	
+	}
 	
 	
 }
@@ -110,5 +115,23 @@ public class StandAloneTestToPOMMainclass extends BaseTest{
 	}
  */
 
+// Creating hashmap manually and sending data
+
+/*
+ * 
+        HashMap<String, String> map = new HashMap<String, String>();
+	    map.put("email","suguneshthanospmmm@gmail.com");
+		map.put("password","Eagle@5714");
+	    map.put("product","ZARA COAT 3");
+		
+		HashMap<String, String> map1 = new HashMap<String, String>();
+		map1.put("email","suguneshthanos@gmail.com");
+		map1.put("password","Sample@5714");	
+		map1.put("product","ADIDAS ORIGINAL");
+		
+		here we are returning objects which has data set inside it
+		syntax -> return new Object[][] { {1st data set},{second data set} } // u need to add {} curly braces inside curly braces, to indicate how many data set u are going to pass and perform same test 
+	
+ */
 
 	
